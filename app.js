@@ -6,7 +6,6 @@ const uuid = require('short-uuid');
 const pgPersistence = require('./lib/pg-persistence');
 const sqlClient = new pgPersistence();
 const mongoClient = require('./lib/mongo-persistence.js');
-console.log(mongoClient);
 
 function generateBasketURL() {
   const basketUrl = uuid.generate();
