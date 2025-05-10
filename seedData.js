@@ -1,5 +1,5 @@
-{
-    "Request 1": {
+db.webhookRequests.insertMany([
+    {
     "date": 1746818490446,
     "headers": {
       "Accept": [
@@ -49,7 +49,7 @@
     "query": ""
   },
 
-  "Request 2": {
+  {
     "date": 1746818464808,
     "headers": {
       "Accept": [
@@ -99,7 +99,7 @@
     "query": ""
   },
 
-  "Request 3": {
+  {
     "date": 1746818449705,
     "headers": {
       "Accept": [
@@ -148,4 +148,4 @@
     "path": "/pjik1mb",
     "query": ""
   }
-}
+]);

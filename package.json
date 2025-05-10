@@ -10,7 +10,13 @@
     "createdb": "createdb requestbin",
     "dropdb": "dropdb requestbin",
     "loadschema": "psql -d requestbin < schema.sql",
-    "loadseeddata": "psql -d requestbin < seedData.sql"
+    "loadseeddata": "psql -d requestbin < seedData.sql",
+    "startmongo": "sudo systemctl start mongod || (echo 'Failed to start MongoDB service. If using macOS, try: brew services start mongodb-community')",
+    "checkmongo": "mongosh --eval \"print('MongoDB connection successful')\" mongodb://localhost:27017 || echo 'MongoDB connection failed'",
+    "resetmongo": "npm run startmongo && npm run dropmongo && npm run setupmongo",
+    "setupmongo": "npm run startmongo && npm run loadmongoseed",
+    "dropmongo": "mongosh --eval \"db.dropDatabase()\" mongodb://localhost:27017/requestbin",    
+    "loadmongoseed": "mongosh mongodb://localhost:27017/requestbin seedData.js"
   },
   "author": "",
   "license": "ISC",
