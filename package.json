@@ -15,7 +15,7 @@
     "checkmongo": "mongosh --eval \"print('MongoDB connection successful')\" mongodb://localhost:27017 || echo 'MongoDB connection failed'",
     "resetmongo": "npm run startmongo && npm run dropmongo && npm run setupmongo",
     "setupmongo": "npm run startmongo && npm run loadmongoseed",
-    "dropmongo": "mongosh --eval \"db.dropDatabase()\" mongodb://localhost:27017/requestbin",    
+    "dropmongo": "mongosh --eval \"db.dropDatabase()\" mongodb://localhost:27017/requestbin",
     "loadmongoseed": "mongosh mongodb://localhost:27017/requestbin seedData.js"
   },
   "author": "",
@@ -23,6 +23,7 @@
   "description": "",
   "dependencies": {
     "express": "^5.1.0",
+    "mongodb": "^6.16.0",
     "nodemon": "^3.1.10",
     "pg": "^8.15.6",
     "short-uuid": "^5.2.0"
