@@ -6,10 +6,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx nodemon app.js",
     "resetdb": "npm run dropdb && npm run setupdb",
-    "setupdb": "npm run createdb && npm run loadschema",
+    "setupdb": "npm run createdb && npm run loadschema && npm run loadseeddata",
     "createdb": "createdb requestbin",
     "dropdb": "dropdb requestbin", 
-    "loadschema": "psql -d requestbin < schema.sql"
+    "loadschema": "psql -d requestbin < schema.sql",
+    "loadseeddata": "psql -d requestbin < seedData.sql"
   },
   "author": "",
   "license": "ISC",
