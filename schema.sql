@@ -1,10 +1,10 @@
-CREATE TABLE basket (
+CREATE TABLE baskets (
   id serial PRIMARY KEY,
   basket_url CHAR(22)
 );
 
 -- maybe add headers and mongo_id later
-CREATE TABLE request (
+CREATE TABLE requests (
   id serial PRIMARY KEY,
   basket_id integer 
     NOT NULL 
