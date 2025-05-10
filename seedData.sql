@@ -1,5 +1,5 @@
 INSERT INTO basket (basket_url)
-  VALUES ('/a6Ty89');
+  VALUES ('b1BGeZ5GbRHtDiPdppAuUV');
 
 INSERT INTO request (basket_id, method, time_stamp)  
   VALUES (1, 'POST', '2025-04-27 09:01:02');

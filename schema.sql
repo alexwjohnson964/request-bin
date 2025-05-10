@@ -1,6 +1,6 @@
 CREATE TABLE basket (
   id serial PRIMARY KEY,
-  basket_url VARCHAR(10)
+  basket_url CHAR(22)
 );
 
 -- maybe add headers and mongo_id later
