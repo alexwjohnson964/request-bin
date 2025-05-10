@@ -10,20 +10,23 @@ function generateBasketURL() {
   const basketUrl = uuid.generate();
   return basketUrl;
 }
-
-
-app.listen(port, host, () => {
-  generateBasketURL();
-  console.log(`RequestBin is listening on port ${port} of ${host}!`);
-});
-
+async function handleRequest(req) {
+  // Create MongoDB document for request 
+  
+  // Create SQL row for request
+  const request = await sqlClient.createRequest(req);
+  return request;
+}
 // Handle web hook get requests
 app.get('/:requestURL', async (req, res) => {
-  
+  const request = await handleRequest(req);
+  res.json({request});
 })
+
 // Handle web hook post request
 app.post('/:requestURL', async (req, res) => {
-  
+  const request = await handleRequest(req);
+  res.json({request});
 })
 
 // Create new basket
@@ -46,5 +49,7 @@ app.get('/', async (req, res) => {
   res.json({error: 'not a valid URL'}) //TODO: handle this in a better way
 })
 
-// curl -X POST \
-//       https://example.com/posts
+
+app.listen(port, host, () => {
+  console.log(`RequestBin is listening on port ${port} of ${host}!`);
+});

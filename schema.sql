@@ -8,7 +8,7 @@ CREATE TABLE requests (
   id serial PRIMARY KEY,
   basket_id integer 
     NOT NULL 
-    REFERENCES basket(id)
+    REFERENCES baskets(id)
     ON DELETE CASCADE,
   method VARCHAR(4),
   time_stamp TIMESTAMP
