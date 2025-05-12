@@ -9,10 +9,6 @@ const sqlClient = new pgPersistence();
 const MongoPersistence = require('./lib/mongo-persistence.js');
 const mongoClient = new MongoPersistence();
 
-mongoClient.createRequest({a: 1});
-mongoClient.createRequest({a: 1});
-mongoClient.createRequest({a: 1});
-
 function generateBasketURL() {
   const basketUrl = uuid.generate();
   return basketUrl;
@@ -51,8 +47,14 @@ app.get('/baskets/:basketURL', async (req, res) => {
   // Find the basket from the SQL database 
   const basketURL = req.params.basketURL;
   const basket = await sqlClient.getBasketByUrl(basketURL);
+  const requests = await sqlClient.getAllRequestsFromBasket(basket.id);
+  //TODO: add mongo info to each request
+  console.log(requests);
   res.json({basket});
 })
+
+// View an existing request
+// Handle on the frontend 
 
 app.get('/', async (req, res) => {
   res.json({error: 'not a valid URL'}) //TODO: handle this in a better way
