@@ -3,23 +3,27 @@ const app = express();
 const host = "localhost"; 
 const port = 3000;
 const uuid = require('short-uuid');
+
 const pgPersistence = require('./lib/pg-persistence');
 const sqlClient = new pgPersistence();
 const MongoPersistence = require('./lib/mongo-persistence.js');
-
 const mongoClient = new MongoPersistence();
 
+mongoClient.createRequest({a: 1});
+mongoClient.createRequest({a: 1});
 mongoClient.createRequest({a: 1});
 
 function generateBasketURL() {
   const basketUrl = uuid.generate();
   return basketUrl;
 }
+
 async function handleRequest(req) {
   // Create MongoDB document for request 
-  
+  const mongoId = mongoClient.createRequest(req);
+
   // Create SQL row for request
-  const request = await sqlClient.createRequest(req);
+  const request = await sqlClient.createRequest(req, mongoId);
   return request;
 }
 // Handle web hook get requests
