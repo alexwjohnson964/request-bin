@@ -16,8 +16,9 @@ function generateBasketURL() {
 
 async function handleRequest(req) {
   // Create MongoDB document for request 
-  const mongoId = mongoClient.createRequest(req);
-
+  const {body, method, headers } = req;
+  const mongoId = await mongoClient.createRequest({body, method, headers});
+  console.log('mongo id:', mongoId)
   // Create SQL row for request
   const request = await sqlClient.createRequest(req, mongoId);
   return request;
@@ -48,13 +49,14 @@ app.get('/baskets/:basketURL', async (req, res) => {
   const basketURL = req.params.basketURL;
   const basket = await sqlClient.getBasketByUrl(basketURL);
   const requests = await sqlClient.getAllRequestsFromBasket(basket.id);
-  //TODO: add mongo info to each request
-  console.log(requests);
-  res.json({basket});
-})
 
-// View an existing request
-// Handle on the frontend 
+  for (let request of requests) {
+    const mongoRequest = await mongoClient.getRequest(request.mongoId);
+    request.body = mongoRequest.body;
+    request.headers = mongoRequest.headers;
+  }
+  res.json({basket, requests: requests});
+})
 
 app.get('/', async (req, res) => {
   res.json({error: 'not a valid URL'}) //TODO: handle this in a better way
