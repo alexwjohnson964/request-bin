@@ -19,7 +19,7 @@ async function handleRequest(req) {
   const {body, method, headers } = req;
   const mongoRequest = await mongoClient.createRequest({body, method, headers});
   const mongoId = mongoRequest['insertedId'].toString();
-  console.log('mongo id:', mongoId)
+  
   // Create SQL row for request
   const request = await sqlClient.createRequest(req, mongoId);
   return request;
