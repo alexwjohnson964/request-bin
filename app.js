@@ -17,7 +17,8 @@ function generateBasketURL() {
 async function handleRequest(req) {
   // Create MongoDB document for request 
   const {body, method, headers } = req;
-  const mongoId = await mongoClient.createRequest({body, method, headers});
+  const mongoRequest = await mongoClient.createRequest({body, method, headers});
+  const mongoId = mongoRequest['insertedId'].toString();
   console.log('mongo id:', mongoId)
   // Create SQL row for request
   const request = await sqlClient.createRequest(req, mongoId);
