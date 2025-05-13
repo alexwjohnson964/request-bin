@@ -4,7 +4,7 @@ const host = "localhost";
 const port = 3000;
 const uuid = require('short-uuid');
 
-const pgPersistence = require('./lib/pg-persistence');
+const pgPersistence = require('./lib/pg-persistence.js');
 const sqlClient = new pgPersistence();
 const MongoPersistence = require('./lib/mongo-persistence.js');
 const mongoClient = new MongoPersistence();
