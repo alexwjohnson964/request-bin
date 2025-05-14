@@ -43,6 +43,12 @@ app.post('/baskets/new', async (req, res) => {
   res.json({newBasket})
 })
 
+// View all baskets
+app.get('/baskets/all', async (req, res) => {
+  const baskets = await sqlClient.getAllBaskets();
+  res.json({baskets: baskets});
+})
+
 // View an existing basket
 app.get('/baskets/:basketURL', async (req, res) => {
   // Find the basket from the SQL database 
