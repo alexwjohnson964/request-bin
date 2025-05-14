@@ -4,16 +4,17 @@ import BasketList from './components/BasketList.tsx';
 import CreateBasket from './components/CreateBasket.tsx';
 import Basket from './components/Basket.tsx';
 
-type Page = 'Home' | 'Basket';
+//type Page = 'Home' | 'Basket';
 const basketArray = [];
-const url = '';
+const seedDataUrl = 'b1BGeZ5GbRHtDiPdppAuUV';
+
 function App() {
   useEffect(() => {
     // grab all baskets for basket list
   }, []);
-
-  const [page, setPage] = useState<Page>('Home');
-  if (page === 'Home') {
+// Instead of page/setpage use currentpage and assign to basket url when clicked, or '' for home page
+  const [currentBasketURL, setCurrentBasketURL] = useState<string>(seedDataUrl);
+  if (currentBasketURL === '') {
     return (
       <>
         <div><CreateBasket /></div>
@@ -22,7 +23,7 @@ function App() {
     );
   } else {
     return (
-      <Basket url={url}/>
+      <Basket url={currentBasketURL}/>
     );
   }
 }

@@ -3,12 +3,12 @@ const app = express();
 const host = "localhost"; 
 const port = 3000;
 const uuid = require('short-uuid');
-
+const cors = require('cors');
 const pgPersistence = require('./lib/pg-persistence.js');
 const sqlClient = new pgPersistence();
 const MongoPersistence = require('./lib/mongo-persistence.js');
 const mongoClient = new MongoPersistence();
-
+app.use(cors());
 function generateBasketURL() {
   const basketUrl = uuid.generate();
   return basketUrl;
