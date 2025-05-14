@@ -30,8 +30,8 @@ module.exports = class MongoPersistence {
   async getRequest(requestId) {
     const db = mongoClient.db('requestbin');
     const request = await db.collection('webhookRequests').findOne({id: requestId});
-    const {body, headers} = request;
-    return {body, headers};
+    const {body, headers, query} = request;
+    return {body, headers, query};
   }
 }
 
