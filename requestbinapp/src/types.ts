@@ -1,3 +1,6 @@
+export interface CreateBasketProps {
+  onCreate: () => void;
+}
 
 export interface BasketType {
   url: string
