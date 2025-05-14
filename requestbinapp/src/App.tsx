@@ -5,12 +5,12 @@ import CreateBasket from './components/CreateBasket.tsx';
 import Basket from './components/Basket.tsx';
 import { getAllBaskets, newBasket } from './apiService.ts';
 
-type Page = 'Home' | 'Basket';
+const seedDataUrl = 'b1BGeZ5GbRHtDiPdppAuUV';
 
 function App() {
   const [basketArray, setBasketArray] = useState([]);
-  const [basketUrl, setBasketUrl] = useState('');
-  const [page, setPage] = useState<Page>('Home');
+  // Instead of page/setpage use currentpage and assign to basket url when clicked, or '' for home page
+  const [currentBasketURL, setCurrentBasketURL] = useState<string>(seedDataUrl);
 
   async function fetchBaskets() {
     try {
@@ -29,14 +29,13 @@ function App() {
     try {
       const basket = await newBasket();
       await fetchBaskets();
-      setBasketUrl(basket.url);
-      setPage('Basket');
+      setCurrentBasketURL(basket.url);
     } catch (error) {
       console.error('Failed creating new basket', error);
     }
   }
 
-  if (page === 'Home') {
+  if (currentBasketURL === '') {
     return (
       <>
         <div><CreateBasket onCreate={handleCreateBasket}/></div>
@@ -45,7 +44,7 @@ function App() {
     );
   } else {
     return (
-      <Basket url={basketUrl}/>
+      <Basket url={currentBasketURL}/>
     );
   }
 }
