@@ -5,6 +5,10 @@ import { type RequestProps } from "../types";
 function Request(props: RequestProps) {
   const {method, path, time_stamp} = props.props;
   let requestDetails;
+  function formatTimeStamp(timeStamp){
+    const date = new Date(time_stamp);
+    return `${date.toLocaleTimeString()}  ${date.toLocaleDateString()}`
+  }
   if (method === 'POST') {
     requestDetails= {
       body: props.props.body,
@@ -18,8 +22,8 @@ function Request(props: RequestProps) {
   }
   return (
     <div className = {`request ${method}`}>
-      <div className='method'>{method}</div>
-      <div className='timeStamp'>{time_stamp}</div>
+      <div className='method'><strong>{method}</strong></div>
+      <div className='timeStamp'>{formatTimeStamp(time_stamp)}</div>
       <div className='path'>{path}</div>
       <RequestDetail props={requestDetails}></RequestDetail>
     </div>
