@@ -1,13 +1,27 @@
-import { type RequestDetails } from '../types';
+import { type RequestDetailProps } from '../types';
+import { type RequestType } from '../types';
+import { type GetRequestDetails, type PostRequestDetails } from '../types';
 import { useState } from 'react';
 import '../App.css';
-function RequestDetail(props: RequestDetails) {
+function RequestDetail(props: RequestDetailProps) {
   const [bodyExpanded, setBodyExpanded] = useState(false);
   const [headersExpanded, setHeadersExpanded] = useState(false);
   const [queryParamsExpanded, setQueryParamsExpanded] = useState(false);
-  let newProps = props.props;
-  const { headers, body, queryParams} = newProps;
-  
+
+  const {request} = props
+
+  let headers; let body; let queryParams;
+  if ('headers' in request) {
+    headers = request.headers;
+  }
+
+  if ('body' in request) {
+    body = request.body;
+  }
+
+  if ('queryParams' in request) {
+    queryParams = request.queryParams;
+  }
   return (
     <>
       <button className = 'button headers' onClick = {()=> setHeadersExpanded(!headersExpanded)}>Headers</button>

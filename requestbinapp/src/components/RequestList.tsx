@@ -1,6 +1,6 @@
 import { type RequestListProps } from "../types";
 import { type RequestType } from "../types";
-import { type RequestProps } from "../types";
+//import { type RequestProps } from "../types";
 import Request from "./Request";
 function RequestList(props: RequestListProps ) {
   const {requestsArray} = props;
@@ -15,7 +15,7 @@ function RequestList(props: RequestListProps ) {
   return (
     <>
     <ul>
-      {requestsArray.map((request, index) => <li key={index}><Request props={request}></Request></li>
+      {requestsArray.map((request, index) => <li key={index}><Request request={request}></Request></li>
       )}
     </ul>
     </>

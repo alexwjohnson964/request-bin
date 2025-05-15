@@ -3,29 +3,30 @@ import RequestDetail from "./RequestDetail";
 import { type RequestProps } from "../types";
 //import { type RequestType } from "../types";
 function Request(props: RequestProps) {
-  const {method, path, time_stamp} = props.props;
+  const {request} = props
+  const {method, path, time_stamp} = request;
   let requestDetails;
-  function formatTimeStamp(timeStamp){
+  function formatTimeStamp(){
     const date = new Date(time_stamp);
-    return `${date.toLocaleTimeString()}  ${date.toLocaleDateString()}`
+    return `${date.toLocaleTimeString('')}  ${date.toLocaleDateString()}`
   }
   if (method === 'POST') {
     requestDetails= {
-      body: props.props.body,
-      headers: props.props.headers
+      body: request.body,
+      headers: request.headers
     }
   } else {
     requestDetails = {
-      queryParams: props.props.queryParams,
-      headers: props.props.headers
+      queryParams: request.queryParams,
+      headers: request.headers
     }
   }
   return (
     <div className = {`request ${method}`}>
       <div className='method'><strong>{method}</strong></div>
-      <div className='timeStamp'>{formatTimeStamp(time_stamp)}</div>
+      <div className='timeStamp'>{formatTimeStamp()}</div>
       <div className='path'>{path}</div>
-      <RequestDetail props={requestDetails}></RequestDetail>
+      <RequestDetail request={requestDetails}></RequestDetail>
     </div>
   )
 }

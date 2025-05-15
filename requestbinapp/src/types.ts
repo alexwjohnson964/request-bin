@@ -45,3 +45,7 @@ export interface GetRequestDetails {
 }
 
 export type RequestDetails = PostRequestDetails | GetRequestDetails;
+
+export interface RequestDetailProps  {
+  request: RequestDetails
+}
