@@ -27,9 +27,8 @@ function App() {
 
   async function handleCreateBasket() {
     try {
-      const basket = await newBasket();
+      await newBasket();
       await fetchBaskets();
-      setCurrentBasketURL(basket.url);
     } catch (error) {
       console.error('Failed creating new basket', error);
     }
