@@ -1,4 +1,3 @@
-import Basket from "./Basket"
 import type { BasketListProps, BasketType } from "../types"
 
 function BasketList({ baskets, setCurrentBasketURL }: BasketListProps) {

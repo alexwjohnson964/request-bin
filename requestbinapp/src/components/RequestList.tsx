@@ -11,7 +11,7 @@ function RequestList(props: RequestListProps ) {
     return dateB - dateA;
   }
   requestsArray.sort(sortRequests)
-  //console.log(requestsArray)
+  
   return (
     <>
     <ul>

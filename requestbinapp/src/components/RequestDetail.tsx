@@ -1,8 +1,7 @@
 import { type RequestDetailProps } from '../types';
-import { type RequestType } from '../types';
-import { type GetRequestDetails, type PostRequestDetails } from '../types';
 import { useState } from 'react';
 import '../App.css';
+
 function RequestDetail(props: RequestDetailProps) {
   const [bodyExpanded, setBodyExpanded] = useState(false);
   const [headersExpanded, setHeadersExpanded] = useState(false);

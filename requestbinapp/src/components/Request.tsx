@@ -1,14 +1,13 @@
 import RequestDetail from "./RequestDetail";
-//import { type RequestDetails } from "../types";
 import { type RequestProps } from "../types";
-//import { type RequestType } from "../types";
+
 function Request(props: RequestProps) {
   const {request} = props
   const {method, path, time_stamp} = request;
   let requestDetails;
   function formatTimeStamp(){
     const date = new Date(time_stamp);
-    return `${date.toLocaleTimeString('')}  ${date.toLocaleDateString()}`
+    return `${date.toLocaleTimeString()}  ${date.toLocaleDateString()}`
   }
   if (method === 'POST') {
     requestDetails= {
