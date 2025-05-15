@@ -20,7 +20,8 @@ export interface RequestType {
 }
 
 export interface BasketProps {
-  url: string
+  url: string,
+  setCurrentBasketURL: (url: string) => void;
 }
 
 export interface RequestListProps {
