@@ -39,12 +39,13 @@ function App() {
     return (
       <>
         <div><CreateBasket onCreate={handleCreateBasket}/></div>
-        <div><BasketList baskets={basketArray}/></div>
+        <div><BasketList baskets={basketArray} setCurrentBasketURL={setCurrentBasketURL}/></div>
       </>
     );
   } else {
     return (
-      <Basket url={currentBasketURL}/>
+      // pass in state setter func for returning to homepage (by setting currentBasketURL to '')
+      <Basket url={currentBasketURL} setCurrentBasketURL={setCurrentBasketURL}/>
     );
   }
 }
