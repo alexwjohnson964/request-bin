@@ -54,6 +54,12 @@ module.exports = class PgPersistence {
     return result.rows[0];
   }
 
+  async getAllBaskets() {
+    const QUERY = `SELECT * FROM ${BASKETS}`;
+    const result = await executeQuery(QUERY);
+    return result.rows;
+  }
+
   async createBasket(url) {
     const QUERY = `INSERT INTO ${BASKETS} (basket_url)
                     VALUES ($1)`;

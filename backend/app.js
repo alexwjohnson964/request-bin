@@ -3,12 +3,12 @@ const app = express();
 const host = "localhost"; 
 const port = 3000;
 const uuid = require('short-uuid');
-
-const pgPersistence = require('./lib/pg-persistence');
+const cors = require('cors');
+const pgPersistence = require('./lib/pg-persistence.js');
 const sqlClient = new pgPersistence();
 const MongoPersistence = require('./lib/mongo-persistence.js');
 const mongoClient = new MongoPersistence();
-
+app.use(cors());
 function generateBasketURL() {
   const basketUrl = uuid.generate();
   return basketUrl;
@@ -16,10 +16,16 @@ function generateBasketURL() {
 
 async function handleRequest(req) {
   // Create MongoDB document for request 
+<<<<<<< HEAD:app.js
   const {body, method, headers } = req;
   const mongoRequest = await mongoClient.createRequest({body, method, headers});
   const mongoId = mongoRequest['insertedId'].toString();
   
+=======
+  const {body, method, headers, query} = req;
+  const mongoId = await mongoClient.createRequest({body, method, headers, query});
+
+>>>>>>> react:backend/app.js
   // Create SQL row for request
   const request = await sqlClient.createRequest(req, mongoId);
   return request;
@@ -42,6 +48,12 @@ app.post('/baskets/new', async (req, res) => {
   await sqlClient.createBasket(basketURL);
   const newBasket = await sqlClient.getBasketByUrl(basketURL);
   res.json({newBasket})
+})
+
+// View all baskets
+app.get('/baskets/all', async (req, res) => {
+  const baskets = await sqlClient.getAllBaskets();
+  res.json({baskets: baskets});
 })
 
 // View an existing basket

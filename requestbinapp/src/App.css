@@ -1,0 +1,79 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+li {
+  list-style-type: none;
+}
+ 
+.GET > .button {
+  background-color: rgb(235, 239, 241);
+  margin: 1%;
+}
+.POST > .button {
+  background-color: rgb(254, 254, 255);
+  margin: 1%;
+}
+
+.details {
+  border-top: solid;
+  border-bottom: solid;
+  word-break: break-all;
+}
+
+.request.GET {
+  background-color: rgb(204, 239, 227);
+  border-style: solid;
+  border-width: 1%;
+  margin: 2%;
+}
+.request.POST {
+  background-color: rgb(184, 213, 246);
+  border-style: solid;
+  border-width: 1%;
+  margin: 2%;
+}
+
+.method {
+  border-bottom: solid;
+  border-width: 1%;
+}
