@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-//import BasketList from "./BasketList";
 import { getBasket } from "../apiService";
 import { type BasketProps } from "../types";
 import { type RequestType } from "../types";
