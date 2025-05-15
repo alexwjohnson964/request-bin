@@ -1,8 +1,16 @@
-function RequestList({ requestsArray }) {
-  
+import { type RequestListProps } from "../types";
+import { type RequestType } from "../types";
+import { type RequestProps } from "../types";
+import Request from "./Request";
+function RequestList(props: RequestListProps ) {
+  const {requestsArray} = props;
+  //console.log(requestsArray)
   return (
     <>
-    test request list
+    <ul>
+      {requestsArray.map((request, index) => <li key={index}><Request props={request}></Request></li>
+      )}
+    </ul>
     </>
   )
 }

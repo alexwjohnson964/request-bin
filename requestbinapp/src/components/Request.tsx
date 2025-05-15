@@ -1,8 +1,27 @@
 import RequestDetail from "./RequestDetail";
-function Request({requestDetails}) {
+import { type RequestDetails } from "../types";
+import { type RequestProps } from "../types";
+import { type RequestType } from "../types";
+function Request(props: RequestProps) {
+  const {method, path, time_stamp} = props.props;
+  let requestDetails;
+  if (method === 'POST') {
+    requestDetails= {
+      body: props.props.body,
+      headers: props.props.headers
+    }
+  } else {
+    requestDetails = {
+      queryParams: props.props.queryParams,
+      headers: props.props.headers
+    }
+  }
   return (
     <>
-    test Request
+      <div className='method'>{method}</div>
+      <div className='timeStamp'>{time_stamp}</div>
+      <div className='path'>{path}</div>
+      <RequestDetail props={requestDetails}></RequestDetail>
     </>
   )
 }

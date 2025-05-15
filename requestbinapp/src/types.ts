@@ -12,11 +12,17 @@ export interface RequestType {
   path: string,
   queryParams?: string, 
   headers: string,
-  body?: string
+  body?: string,
+  time_stamp: string,
+  mongo_id?: string
 }
 
 export interface BasketProps {
   url: string
+}
+
+export interface RequestProps {
+  request: RequestType
 }
 
 export interface RequestListProps {

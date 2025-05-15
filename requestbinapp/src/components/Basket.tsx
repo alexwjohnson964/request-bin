@@ -20,8 +20,9 @@ function Basket(props: BasketProps) {
   
   return (
     <>
+    {/* <button onClick={() => }>Home</button> */}
     <h2>Basket: {url}</h2>
-    <div>Requests are collected at</div>
+    <div>Requests are collected at {url}</div>
     <h3>Request count: {requestsList.length}</h3>
     <RequestList requestsArray = {requestsList}/>
     </>
