@@ -44,3 +44,36 @@
 li {
   list-style-type: none;
 }
+ 
+.GET > .button {
+  background-color: rgb(235, 239, 241);
+  margin: 1%;
+}
+.POST > .button {
+  background-color: rgb(254, 254, 255);
+  margin: 1%;
+}
+
+.details {
+  border-top: solid;
+  border-bottom: solid;
+  word-break: break-all;
+}
+
+.request.GET {
+  background-color: rgb(204, 239, 227);
+  border-style: solid;
+  border-width: 1%;
+  margin: 2%;
+}
+.request.POST {
+  background-color: rgb(184, 213, 246);
+  border-style: solid;
+  border-width: 1%;
+  margin: 2%;
+}
+
+.method {
+  border-bottom: solid;
+  border-width: 1%;
+}

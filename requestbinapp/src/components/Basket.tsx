@@ -22,7 +22,8 @@ function Basket(props: BasketProps) {
     <>
     {/* <button onClick={() => }>Home</button> */}
     <h2>Basket: {url}</h2>
-    <div>Requests are collected at {url}</div>
+    <div>Send requests to <a>/{url}</a></div><br></br>
+    <div>This basket can be viewed at <a>/baskets/{url}</a></div>
     <h3>Request count: {requestsList.length}</h3>
     <RequestList requestsArray = {requestsList}/>
     </>

@@ -1,7 +1,7 @@
 import RequestDetail from "./RequestDetail";
-import { type RequestDetails } from "../types";
+//import { type RequestDetails } from "../types";
 import { type RequestProps } from "../types";
-import { type RequestType } from "../types";
+//import { type RequestType } from "../types";
 function Request(props: RequestProps) {
   const {method, path, time_stamp} = props.props;
   let requestDetails;
@@ -17,12 +17,12 @@ function Request(props: RequestProps) {
     }
   }
   return (
-    <>
+    <div className = {`request ${method}`}>
       <div className='method'>{method}</div>
       <div className='timeStamp'>{time_stamp}</div>
       <div className='path'>{path}</div>
       <RequestDetail props={requestDetails}></RequestDetail>
-    </>
+    </div>
   )
 }
 
