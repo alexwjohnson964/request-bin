@@ -7,7 +7,7 @@ import RequestList from "./RequestList";
 
 function Basket(props: BasketProps) {
   const [requestsList, setRequestsList] = useState<Array<RequestType>>([]);
-  const {url} = props;
+  const {url, setCurrentBasketURL} = props;
   useEffect(() => {
     updateRequestList();
   }, [])
@@ -20,7 +20,7 @@ function Basket(props: BasketProps) {
   
   return (
     <>
-    {/* <button onClick={() => }>Home</button> */}
+    <button onClick={() => setCurrentBasketURL('')}>Home</button>
     <h2>Basket: {url}</h2>
     <div>Send requests to <a>/{url}</a></div><br></br>
     <div>This basket can be viewed at <a>/baskets/{url}</a></div>
