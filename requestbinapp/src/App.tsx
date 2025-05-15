@@ -5,12 +5,12 @@ import CreateBasket from './components/CreateBasket.tsx';
 import Basket from './components/Basket.tsx';
 import { getAllBaskets, newBasket } from './apiService.ts';
 
-const seedDataUrl = 'b1BGeZ5GbRHtDiPdppAuUV';
+// const seedDataUrl = 'b1BGeZ5GbRHtDiPdppAuUV';
 
 function App() {
   const [basketArray, setBasketArray] = useState([]);
   // Instead of page/setpage use currentpage and assign to basket url when clicked, or '' for home page
-  const [currentBasketURL, setCurrentBasketURL] = useState<string>(seedDataUrl);
+  const [currentBasketURL, setCurrentBasketURL] = useState<string>('');
 
   async function fetchBaskets() {
     try {

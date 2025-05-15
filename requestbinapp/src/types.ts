@@ -3,7 +3,7 @@ export interface CreateBasketProps {
 }
 
 export interface BasketType {
-  url: string
+  basket_url: string
 }
 
 export interface BasketListProps  {
