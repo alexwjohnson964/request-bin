@@ -27,5 +27,5 @@ export async function getBasket(basketUrl: string){
 //Get all baskets
 export async function getAllBaskets() {
   const response = await axios.get(`${baseURL}/baskets/all`);
-  return response.data;
+  return response.data.baskets;
 }

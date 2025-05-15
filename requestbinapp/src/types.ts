@@ -1,10 +1,14 @@
+export interface CreateBasketProps {
+  onCreate: () => void
+}
 
 export interface BasketType {
-  url: string
+  basket_url: string
 }
 
 export interface BasketListProps  {
-  baskets: Array<BasketType>
+  baskets: Array<BasketType>,
+  setCurrentBasketURL: (url: string) => void;
 }
 
 export interface RequestType {
@@ -18,7 +22,8 @@ export interface RequestType {
 }
 
 export interface BasketProps {
-  url: string
+  url: string,
+  setCurrentBasketURL: (url: string) => void;
 }
 
 export interface RequestProps {
