@@ -41,11 +41,14 @@ module.exports = class PgPersistence {
     // TODO: Make sure basket exists and handle if no basket exists
     const basketId = await this.getBasketByUrl(request.path.slice(1));
     const id = basketId.id;
-   
+    
     const timestamp = new Date(Date.now()).toUTCString();
     const QUERY = `INSERT INTO ${REQUESTS} (basket_id, mongo_id, method, time_stamp)
                     VALUES ($1, $2, $3, $4)`;
+    
     const result = await executeQuery(QUERY, id, requestId, request.method, timestamp);
+    
+    return result;
   }
 
   async getBasketByUrl(url) {

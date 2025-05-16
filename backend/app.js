@@ -16,11 +16,13 @@ function generateBasketURL() {
 
 async function handleRequest(req) {
   // Create MongoDB document for request 
-  const {body, method, headers, query} = req;
-  const mongoId = await mongoClient.createRequest({body, method, headers, query});
-
+  const {body, method, headers, query, path} = req;
+  
+  const mongoId = await mongoClient.createRequest({body, method, headers, query, path});
   // Create SQL row for request
+  
   const request = await sqlClient.createRequest(req, mongoId);
+  //console.log(request)
   return request;
 }
 // Handle web hook get requests
@@ -40,7 +42,7 @@ app.post('/baskets/new', async (req, res) => {
   const basketURL = generateBasketURL();
   await sqlClient.createBasket(basketURL);
   const newBasket = await sqlClient.getBasketByUrl(basketURL);
-  res.json({newBasket})
+  res.json({newBasket});
 })
 
 // View all baskets
@@ -55,12 +57,15 @@ app.get('/baskets/:basketURL', async (req, res) => {
   const basketURL = req.params.basketURL;
   const basket = await sqlClient.getBasketByUrl(basketURL);
   const requests = await sqlClient.getAllRequestsFromBasket(basket.id);
-
+  
   for (let request of requests) {
+    console.log('request', request)
     const mongoRequest = await mongoClient.getRequest(request.mongoId);
+    console.log(mongoRequest.path)
     request.body = mongoRequest.body;
     request.headers = mongoRequest.headers;
     request.path = mongoRequest.path;
+
   }
   res.json({basket, requests: requests});
 })

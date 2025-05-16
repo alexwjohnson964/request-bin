@@ -22,13 +22,18 @@ module.exports = class MongoPersistence {
   async createRequest(request) {
     const db = mongoClient.db('requestbin');
     const newRequest = await db.collection('webhookRequests').insertOne(request);
-    return newRequest;
+    //return newRequest;
+   
+    //const requestId = newRequest['insertedId'].toString();
+    return requestId;
   }
 
   async getRequest(requestId) {
+    console.log('id', requestId);
     const db = mongoClient.db('requestbin');
-    const request = await db.collection('webhookRequests').findOne({id: requestId});
+    const request = await db.collection('webhookRequests').findOne({_id: requestId});
     const {body, headers, query, path} = request;
+    console.log('mongopath', path)
     return {body, headers, query, path};
   }
 }
