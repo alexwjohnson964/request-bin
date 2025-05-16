@@ -60,6 +60,7 @@ app.get('/baskets/:basketURL', async (req, res) => {
     const mongoRequest = await mongoClient.getRequest(request.mongoId);
     request.body = mongoRequest.body;
     request.headers = mongoRequest.headers;
+    request.path = mongoRequest.path;
   }
   res.json({basket, requests: requests});
 })

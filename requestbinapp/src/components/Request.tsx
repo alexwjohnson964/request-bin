@@ -4,6 +4,7 @@ import { type RequestProps } from "../types";
 function Request(props: RequestProps) {
   const {request} = props
   const {method, path, time_stamp} = request;
+  console.log(request)
   let requestDetails;
   function formatTimeStamp(){
     const date = new Date(time_stamp);
@@ -23,8 +24,8 @@ function Request(props: RequestProps) {
   return (
     <div className = {`request ${method}`}>
       <div className='method'><strong>{method}</strong></div>
-      <div className='timeStamp'>{formatTimeStamp()}</div>
       <div className='path'>{path}</div>
+      <div className='timeStamp'>{formatTimeStamp()}</div>
       <RequestDetail request={requestDetails}></RequestDetail>
     </div>
   )
