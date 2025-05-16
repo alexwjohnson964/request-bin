@@ -10,7 +10,7 @@ CREATE TABLE requests (
     NOT NULL 
     REFERENCES baskets(id)
     ON DELETE CASCADE,
-  mongo_id CHAR(24),
+  mongo_id CHAR(22),
   method CHAR(4),
   time_stamp TIMESTAMP
 );

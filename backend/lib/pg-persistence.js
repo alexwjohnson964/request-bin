@@ -37,6 +37,7 @@ module.exports = class PgPersistence {
   }
 
   async createRequest(request, requestId) {
+    console.log('pgrid', requestId)
     // TODO: Make sure request path actually matches the url of the basket
     // TODO: Make sure basket exists and handle if no basket exists
     const basketId = await this.getBasketByUrl(request.path.slice(1));

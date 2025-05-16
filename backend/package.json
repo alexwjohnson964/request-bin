@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx nodemon app.js",
     "resetdb": "npm run dropdb && npm run setupdb",
-    "setupdb": "npm run createdb && npm run loadschema && npm run loadseeddata",
+    "setupdb": "npm run createdb && npm run loadschema",
     "createdb": "createdb requestbin",
     "dropdb": "dropdb requestbin",
     "loadschema": "psql -d requestbin < schema.sql",
@@ -14,7 +14,7 @@
     "startmongo": "sudo systemctl start mongod || (echo 'Failed to start MongoDB service. If using macOS, try: brew services start mongodb-community')",
     "checkmongo": "mongosh --eval \"print('MongoDB connection successful')\" mongodb://localhost:27017 || echo 'MongoDB connection failed'",
     "resetmongo": "npm run startmongo && npm run dropmongo && npm run setupmongo",
-    "setupmongo": "npm run startmongo && npm run loadmongoseed",
+    "setupmongo": "npm run startmongo",
     "dropmongo": "mongosh --eval \"db.dropDatabase()\" mongodb://localhost:27017/requestbin",
     "loadmongoseed": "mongosh mongodb://localhost:27017/requestbin seedData.js"
   },

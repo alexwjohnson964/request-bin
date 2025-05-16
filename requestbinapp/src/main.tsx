@@ -7,10 +7,11 @@ import Basket from './components/Basket.tsx'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-    <Routes>
+      <App />
+    {/* <Routes>
     <Route path = "/" element ={<App />}/>
     <Route path = "/baskets/:basketUrl" element = {<Basket></Basket>}></Route>
-    </Routes>
+    </Routes> */}
     </BrowserRouter>
   </StrictMode>,
 )

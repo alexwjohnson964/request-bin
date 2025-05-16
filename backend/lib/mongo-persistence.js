@@ -23,46 +23,19 @@ module.exports = class MongoPersistence {
     const db = mongoClient.db('requestbin');
     const newRequest = await db.collection('webhookRequests').insertOne(request);
     //return newRequest;
-   
-    //const requestId = newRequest['insertedId'].toString();
+    const requestId = newRequest['insertedId'].toString();
+    //db.collection('webHookRequests').updateOne()
+
+    
     return requestId;
   }
 
   async getRequest(requestId) {
-    console.log('id', requestId);
+    console.log('request ID', requestId)
     const db = mongoClient.db('requestbin');
-    const request = await db.collection('webhookRequests').findOne({_id: requestId});
-    const {body, headers, query, path} = request;
-    console.log('mongopath', path)
-    return {body, headers, query, path};
+    const request = await db.collection('webhookRequests').findOne({ID: requestId});
+    // const request = await db.collection('webhookRequests').findOne({insertedId: requestId});
+    const {body, headers, query, path, ID} = request;
+    return {body, headers, query, path, ID};
   }
 }
-
-
-// module.exports = mongoClient;
-
-// From Al's VPS
-// MongoDB: Get all logs
-// app.get('/logs', async (req, res) => {
-//   try {
-//     const db = mongoClient.db('my_mongo_db');
-//     const logs = await db.collection('logs').find().toArray();
-//     res.render('logs', { logs });
-//   } catch (err) {
-//     console.error('MongoDB query error:', err);
-//     res.status(500).json({ error: 'Database error' });
-//   }
-// });
-
-// // MongoDB: Add a new log
-// app.post('/logs', async (req, res) => {
-//   const { logMessage } = req.body;
-//   try {
-//     const db = mongoClient.db('my_mongo_db');
-//     await db.collection('logs').insertOne({ log: logMessage, timestamp: new Date() });
-//     res.redirect('/logs');
-//   } catch (err) {
-//     console.error('MongoDB insert error:', err);
-//     res.status(500).json({ error: 'Database error' });
-//   }
-// });

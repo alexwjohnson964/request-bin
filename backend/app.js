@@ -17,12 +17,11 @@ function generateBasketURL() {
 async function handleRequest(req) {
   // Create MongoDB document for request 
   const {body, method, headers, query, path} = req;
-  
-  const mongoId = await mongoClient.createRequest({body, method, headers, query, path});
+  const ID = generateBasketURL();
+  const mongoId = await mongoClient.createRequest({body, method, headers, query, path, ID});
   // Create SQL row for request
-  
-  const request = await sqlClient.createRequest(req, mongoId);
-  //console.log(request)
+  //const requestId = newRequest['insertedId'].toString();
+  const request = await sqlClient.createRequest(req, ID);
   return request;
 }
 // Handle web hook get requests
@@ -60,8 +59,8 @@ app.get('/baskets/:basketURL', async (req, res) => {
   
   for (let request of requests) {
     console.log('request', request)
-    const mongoRequest = await mongoClient.getRequest(request.mongoId);
-    console.log(mongoRequest.path)
+    const mongoRequest = await mongoClient.getRequest(request.mongo_id);
+    console.log('mr', mongoRequest)
     request.body = mongoRequest.body;
     request.headers = mongoRequest.headers;
     request.path = mongoRequest.path;
