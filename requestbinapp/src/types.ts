@@ -21,11 +21,6 @@ export interface RequestType {
   mongo_id?: string
 }
 
-export interface BasketProps {
-  url: string,
-  setCurrentBasketURL: (url: string) => void;
-}
-
 export interface RequestProps {
   request: RequestType
 }
