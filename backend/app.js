@@ -8,7 +8,10 @@ const pgPersistence = require('./lib/pg-persistence.js');
 const sqlClient = new pgPersistence();
 const MongoPersistence = require('./lib/mongo-persistence.js');
 const mongoClient = new MongoPersistence();
+
 app.use(cors());
+app.use(express.json())
+
 function generateBasketURL() {
   const basketUrl = uuid.generate();
   return basketUrl;
@@ -17,6 +20,7 @@ function generateBasketURL() {
 async function handleRequest(req) {
   // Create MongoDB document for request 
   const {body, method, headers, query, path} = req;
+  console.log('body', body)
   const ID = generateBasketURL();
   const mongoId = await mongoClient.createRequest({body, method, headers, query, path, ID});
   // Create SQL row for request
