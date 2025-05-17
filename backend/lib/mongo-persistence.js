@@ -1,6 +1,6 @@
 require('dotenv').config();
 const MONGODB_URI = process.env.MONGODB_URI;
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 
 // Mongo connection
 const mongoClient = new MongoClient(MONGODB_URI);
@@ -22,9 +22,7 @@ module.exports = class MongoPersistence {
   async createRequest(request) {
     const db = mongoClient.db('requestbin');
     const newRequest = await db.collection('webhookRequests').insertOne(request);
-    //return newRequest;
     const requestId = newRequest['insertedId'].toString();
-    //db.collection('webHookRequests').updateOne()
 
     return requestId;
   }
@@ -32,8 +30,7 @@ module.exports = class MongoPersistence {
   async getRequest(requestId) {
     console.log('request ID', requestId)
     const db = mongoClient.db('requestbin');
-    const request = await db.collection('webhookRequests').findOne(ObjectId(requestId));
-    // const request = await db.collection('webhookRequests').findOne({insertedId: requestId});
+    const request = await db.collection('webhookRequests').findOne(new ObjectId(requestId));
     const {body, headers, query, path, ID} = request;
     return {body, headers, query, path, ID};
   }

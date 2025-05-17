@@ -20,7 +20,6 @@ async function handleRequest(req) {
   const ID = generateBasketURL();
   const mongoId = await mongoClient.createRequest({body, method, headers, query, path, ID});
   // Create SQL row for request
-  //const requestId = newRequest['insertedId'].toString();
   const request = await sqlClient.createRequest(req, mongoId);
   return request;
 }
@@ -58,9 +57,7 @@ app.get('/baskets/:basketURL', async (req, res) => {
   const requests = await sqlClient.getAllRequestsFromBasket(basket.id);
   
   for (let request of requests) {
-    console.log('request', request)
     const mongoRequest = await mongoClient.getRequest(request.mongo_id);
-    console.log('mr', mongoRequest)
     request.body = mongoRequest.body;
     request.headers = mongoRequest.headers;
     request.path = mongoRequest.path;
