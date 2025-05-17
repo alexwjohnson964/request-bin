@@ -20,9 +20,9 @@ function generateBasketURL() {
 async function handleRequest(req) {
   // Create MongoDB document for request 
   const {body, method, headers, query, path} = req;
-  console.log('body', body)
+  console.log('params', query)
   const ID = generateBasketURL();
-  const mongoId = await mongoClient.createRequest({body, method, headers, query, path, ID});
+  const mongoId = await mongoClient.createRequest({body, method, headers, queryParams: query, path, ID});
   // Create SQL row for request
   const request = await sqlClient.createRequest(req, mongoId);
   return request;
@@ -65,7 +65,7 @@ app.get('/baskets/:basketURL', async (req, res) => {
     request.body = mongoRequest.body;
     request.headers = mongoRequest.headers;
     request.path = mongoRequest.path;
-
+    request.queryParams = mongoRequest.queryParams;
   }
   res.json({basket, requests: requests});
 })
