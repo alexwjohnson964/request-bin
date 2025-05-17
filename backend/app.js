@@ -21,7 +21,7 @@ async function handleRequest(req) {
   const mongoId = await mongoClient.createRequest({body, method, headers, query, path, ID});
   // Create SQL row for request
   //const requestId = newRequest['insertedId'].toString();
-  const request = await sqlClient.createRequest(req, ID);
+  const request = await sqlClient.createRequest(req, mongoId);
   return request;
 }
 // Handle web hook get requests
