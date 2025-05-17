@@ -27,7 +27,7 @@ function RequestDetail(props: RequestDetailProps) {
       {headersExpanded && <div className = 'details headers'>{JSON.stringify(headers)}</div>}
       <br></br>
       {body && <button className = 'button body' onClick = {() => setBodyExpanded(!bodyExpanded)}>Body</button>}
-      {bodyExpanded && <><div className = 'details body'>{body}</div> <br></br></>}
+      {bodyExpanded && <><div className = 'details body'>{JSON.stringify(body)}</div> <br></br></>}
      
       {queryParams && <button className = 'button queryParams' onClick ={() => setQueryParamsExpanded(!queryParamsExpanded)}>Query Params</button>}
       {queryParamsExpanded && <div className = 'details query'>{queryParams}</div>}
