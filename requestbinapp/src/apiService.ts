@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = 'http://localhost:3000';
+const baseURL = '/api';
 
 //For post requests
 const axiosConfig = {
@@ -13,7 +13,7 @@ const axiosConfig = {
 
 //Post a new basket request 
 export async function newBasket(){
-  const response = await axios.post(`${baseURL}/baskets/new`, axiosConfig);
+  const response = await axios.post(`${baseURL}/baskets/new`, {}, axiosConfig);
   return response.data;
 }
 
